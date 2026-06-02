@@ -1,13 +1,11 @@
 ---
 name: PrefixesPro
-version: 3.0.0
+version: 1.0.0
 main: AndresD3us\prefixespro\PrefixesPro
 author: AndresD3us
 api:
   - 5.0.0
 description: "Advanced prefix system for PocketMine-MP"
-depend:
-  - InvMenu
 
 permissions:
   prefixespro.command:

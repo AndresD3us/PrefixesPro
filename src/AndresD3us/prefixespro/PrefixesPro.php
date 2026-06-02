@@ -6,7 +6,7 @@ namespace AndresD3us\prefixespro;
 
 use AndresD3us\prefixespro\command\PrefixCommand;
 use AndresD3us\prefixespro\command\PrefixesCommand;
-use AndresD3us\libs\AndresD3us\libs\muqsit\invmenu\InvMenuHandler;
+use AndresD3us\libs\muqsit\invmenu\InvMenuHandler;
 use AndresD3us\prefixespro\listener\EventListener;
 use AndresD3us\prefixespro\prefix\PrefixManager;
 use AndresD3us\prefixespro\provider\Provider;
