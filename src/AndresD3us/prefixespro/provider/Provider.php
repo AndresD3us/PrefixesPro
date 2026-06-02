@@ -33,8 +33,6 @@ class Provider
     {
         PrefixesPro::getInstance()->getConfig()->reload();
     }
-
-    /** @return array<string, array> */
     public function getPrefixes(): array
     {
         $prefixes = [];
@@ -58,8 +56,6 @@ class Provider
             json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
         );
     }
-
-    /** @return array<string, array> */
     public function getSessions(): array
     {
         $sessions = [];

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace AndresD3us\prefixespro\command;
 
-use muqsit\invmenu\InvMenu;
-use muqsit\invmenu\transaction\InvMenuTransaction;
-use muqsit\invmenu\transaction\InvMenuTransactionResult;
-use muqsit\invmenu\type\InvMenuTypeIds;
+use AndresD3us\libs\muqsit\invmenu\InvMenu;
+use AndresD3us\libs\muqsit\invmenu\transaction\InvMenuTransaction;
+use AndresD3us\libs\muqsit\invmenu\transaction\InvMenuTransactionResult;
+use AndresD3us\libs\muqsit\invmenu\type\InvMenuTypeIds;
 use AndresD3us\prefixespro\PrefixesPro;
 use AndresD3us\prefixespro\prefix\Prefix;
 use AndresD3us\prefixespro\utils\TimeParser;
@@ -45,25 +45,19 @@ class PrefixesCommand extends Command
         $this->openCategoryMenu($sender);
     }
 
-    // ──────────────────────────────────────────────
-    //  MENU 1: Category selector (Free / Pay)
-    // ──────────────────────────────────────────────
-
     private function openCategoryMenu(Player $player): void
     {
         $menu = InvMenu::create(InvMenuTypeIds::TYPE_CHEST);
-        $menu->setName(TextFormat::colorize("&r&bPrefixes &8NeptuneMCPE"));
+        $menu->setName(TextFormat::colorize("&r&bPrefixes &eCategories"));
 
         $inv = $menu->getInventory();
 
-        // ── Gray glass filler ──
         $filler = VanillaBlocks::STAINED_GLASS()->setColor(\pocketmine\block\utils\DyeColor::GRAY())->asItem()
             ->setCustomName(TextFormat::colorize("&r"));
         for ($i = 0; $i < 27; $i++) {
             $inv->setItem($i, $filler);
         }
 
-        // ── FREE PREFIX button ──
         $freeBtn = VanillaBlocks::EMERALD()->asItem()
             ->setCustomName(TextFormat::colorize("&r&a&lFree Prefix"))
             ->setLore([
@@ -74,7 +68,6 @@ class PrefixesCommand extends Command
             ]);
         $inv->setItem(11, $freeBtn);
 
-        // ── PAY PREFIX button ──
         $payBtn = VanillaBlocks::GOLD()->asItem()
             ->setCustomName(TextFormat::colorize("&r&6&lPay Prefix"))
             ->setLore([
@@ -95,7 +88,6 @@ class PrefixesCommand extends Command
 
             if (str_contains($name, "Free Prefix")) {
                 $player->removeCurrentWindow();
-                // Small delay so the menu closes before opening another
                 PrefixesPro::getInstance()->getScheduler()->scheduleDelayedTask(
                     new \pocketmine\scheduler\ClosureTask(fn() => $this->openPrefixMenu($player, "free")),
                     2
@@ -113,10 +105,6 @@ class PrefixesCommand extends Command
 
         $menu->send($player);
     }
-
-    // ──────────────────────────────────────────────
-    //  MENU 2: Prefix list for the category
-    // ──────────────────────────────────────────────
 
     private function openPrefixMenu(Player $player, string $category): void
     {
@@ -137,7 +125,6 @@ class PrefixesCommand extends Command
 
         $inv = $menu->getInventory();
 
-        // Filler
         $filler = VanillaBlocks::STAINED_GLASS()->setColor(\pocketmine\block\utils\DyeColor::GRAY())->asItem()
             ->setCustomName(TextFormat::colorize("&r"));
         for ($i = 0; $i < 54; $i++) {
@@ -156,7 +143,6 @@ class PrefixesCommand extends Command
         $slot = 10;
         foreach ($prefixes as $name => $prefix) {
             if ($slot >= 44) break;
-            // Skip border slots
             if ($slot % 9 === 0 || $slot % 9 === 8) {
                 $slot++;
                 continue;
@@ -165,7 +151,6 @@ class PrefixesCommand extends Command
             $isOwned   = $session?->hasPrefix($name) ?? false;
             $isCurrent = $session?->getActivePrefix() === $name;
 
-            // For FREE: always available. For PAY: only if in their list
             $canUse = ($category === "free") || $isOwned;
 
             if ($category === "free") {
@@ -214,7 +199,6 @@ class PrefixesCommand extends Command
             $slot++;
         }
 
-        // Back button (slot 49)
         $inv->setItem(
             49,
             VanillaBlocks::BED()->asItem()
@@ -222,7 +206,6 @@ class PrefixesCommand extends Command
                 ->setLore([TextFormat::colorize("&r&7Return to the category menu")])
         );
 
-        // Remove active prefix button (slot 48) if they have one in this category
         $active = $session?->getActivePrefix();
         if ($active !== null && isset($prefixes[$active])) {
             $inv->setItem(
@@ -246,7 +229,6 @@ class PrefixesCommand extends Command
 
             $rawName = TextFormat::clean($item->getCustomName());
 
-            // Back button
             if (str_contains($rawName, "Back")) {
                 $player->removeCurrentWindow();
                 $plugin->getScheduler()->scheduleDelayedTask(
@@ -256,7 +238,6 @@ class PrefixesCommand extends Command
                 return $tx->discard();
             }
 
-            // Remove active prefix button
             if (str_contains($rawName, "Remove active prefix")) {
                 if ($session !== null) {
                     $old = $session->getActivePrefix();
@@ -269,7 +250,6 @@ class PrefixesCommand extends Command
                         "prefix" => $old ?? "?",
                         "player" => $player->getName(),
                     ]));
-                    // Refresh menu
                     $player->removeCurrentWindow();
                     $plugin->getScheduler()->scheduleDelayedTask(
                         new \pocketmine\scheduler\ClosureTask(fn() => $this->openPrefixMenu($player, $category)),
@@ -279,11 +259,9 @@ class PrefixesCommand extends Command
                 return $tx->discard();
             }
 
-            // Click on a prefix
             $prefix = $plugin->getPrefixManager()->get($rawName);
             if ($prefix === null) return $tx->discard();
 
-            // Verify they can use it
             if ($category === "pay" && ($session === null || !$session->hasPrefix($rawName))) {
                 $player->sendMessage($msgs->get("prefix-no-permission-use", ["prefix" => $rawName]));
                 return $tx->discard();
@@ -291,7 +269,6 @@ class PrefixesCommand extends Command
 
             if ($session !== null) {
                 if ($session->getActivePrefix() === $rawName) {
-                    // Toggle: deactivate
                     $session->setActivePrefix(null);
                     $plugin->getProvider()->saveSession($session->getUuid(), $session->toArray());
                     if ((bool) $plugin->getConfig()->get("update-nametag", false)) {
@@ -302,8 +279,6 @@ class PrefixesCommand extends Command
                         "player" => $player->getName(),
                     ]));
                 } else {
-                    // Activate
-                    // For free: auto-add if they don't have it
                     if ($category === "free" && !$session->hasPrefix($rawName)) {
                         $session->addPrefix($rawName, 0);
                     }
@@ -312,7 +287,6 @@ class PrefixesCommand extends Command
                     $player->sendMessage($msgs->get("prefix-selected", ["prefix" => $prefix->getColorizedFormat()]));
                 }
 
-                // Refresh menu
                 $player->removeCurrentWindow();
                 $plugin->getScheduler()->scheduleDelayedTask(
                     new \pocketmine\scheduler\ClosureTask(fn() => $this->openPrefixMenu($player, $category)),

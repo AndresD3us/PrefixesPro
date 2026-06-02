@@ -8,7 +8,6 @@ use AndresD3us\prefixespro\PrefixesPro;
 
 class SessionManager
 {
-    /** @var Session[] uuid => Session */
     private array $sessions = [];
 
     public function __construct()
@@ -28,8 +27,6 @@ class SessionManager
         $this->sessions = [];
         $this->loadFromProvider();
     }
-
-    /** @return Session[] */
     public function getAll(): array
     {
         return $this->sessions;

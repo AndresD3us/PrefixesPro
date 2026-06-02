@@ -8,7 +8,6 @@ use AndresD3us\prefixespro\PrefixesPro;
 
 class PrefixManager
 {
-    /** @var Prefix[] name => Prefix */
     private array $prefixes = [];
 
     public function __construct()
@@ -28,14 +27,10 @@ class PrefixManager
         $this->prefixes = [];
         $this->loadFromProvider();
     }
-
-    /** @return Prefix[] */
     public function getAll(): array
     {
         return $this->prefixes;
     }
-
-    /** @return Prefix[] */
     public function getByCategory(string $category): array
     {
         return array_filter(
@@ -74,8 +69,6 @@ class PrefixManager
 
         $plugin   = PrefixesPro::getInstance();
         $provider = $plugin->getProvider();
-
-        // Remove prefix from all sessions in memory AND persist each change
         foreach ($plugin->getSessionManager()->getAll() as $uuid => $session) {
             if ($session->hasPrefix($name) || $session->getActivePrefix() === $name) {
                 $session->removePrefix($name);

@@ -9,8 +9,6 @@ use pocketmine\command\CommandSender;
 interface SubCommandInterface
 {
     public function getName(): string;
-
-    /** @return string[] */
     public function getAliases(): array;
 
     public function getPermission(): string;

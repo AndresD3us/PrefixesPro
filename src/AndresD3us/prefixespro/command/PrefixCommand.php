@@ -17,7 +17,6 @@ use pocketmine\command\CommandSender;
 
 class PrefixCommand extends Command
 {
-    /** @var array<string, SubCommandInterface> */
     private array $subCommands = [];
 
     public function __construct()
