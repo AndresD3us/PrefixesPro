@@ -9,6 +9,7 @@ use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\utils\TextFormat;
+use pocketmine\Server;
 
 class EventListener implements Listener
 {
@@ -58,8 +59,12 @@ class EventListener implements Listener
             $chatFormat
         );
 
-        $event->setFormat($formatted);
-        
+        $event->cancel();
+        foreach (Server::getInstance()->getOnlinePlayers() as $recipient) {
+            $recipient->sendMessage($formatted);
+        }
+        Server::getInstance()->getLogger()->info(TextFormat::clean($formatted));
+
         if ((bool) $plugin->getConfig()->get("update-nametag", false)) {
             $player->setNameTag($prefix->getColorizedFormat() . " " . $player->getName());
         }
