@@ -1,0 +1,48 @@
+---
+name: PrefixesPro
+version: 3.0.0
+main: AndresD3us\prefixespro\PrefixesPro
+author: AndresD3us
+api:
+  - 5.0.0
+description: "Advanced prefix system for PocketMine-MP"
+depend:
+  - InvMenu
+
+permissions:
+  prefixespro.command:
+    default: true
+    description: "Allows using /prefix"
+
+  prefixespro.command.help:
+    default: true
+    description: "View command help"
+
+  prefixespro.command.create:
+    default: op
+    description: "Create a new prefix (FormAPI)"
+
+  prefixespro.command.delete:
+    default: op
+    description: "Delete a prefix from the server"
+
+  prefixespro.command.add:
+    default: op
+    description: "Give a prefix to a player (/prefix add)"
+
+  prefixespro.command.remove:
+    default: op
+    description: "Remove a prefix from a player (/prefix revoke)"
+
+  prefixespro.command.reload:
+    default: op
+    description: "Reload the plugin configuration"
+
+  prefixespro.command.list:
+    default: op
+    description: "View the list of all prefixes (admin)"
+
+  prefixespro.gui:
+    default: true
+    description: "Open the prefix GUI menu (/prefixes)"
+...
