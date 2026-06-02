@@ -1,0 +1,46 @@
+# ==========================================
+#   PrefixesPro v1 - Messages
+# ==========================================
+# Color codes: &0-&f, &l (bold), &o (italic), &r (reset)
+
+plugin-prefix: "&8[&bPrefixes&8]&r"
+
+# -------- General errors --------
+no-permission: "%plugin-prefix% &cYou do not have permission to execute this command."
+only-in-game: "%plugin-prefix% &cThis command can only be used in-game."
+reloading: "%plugin-prefix% &eThe plugin is reloading, please wait a moment..."
+
+# -------- Commands --------
+unknown-subcommand: "%plugin-prefix% &cUnknown subcommand. Use &e/prefix help&c."
+
+# -------- Create prefix --------
+prefix-already-exists: "%plugin-prefix% &cA prefix with the name &e%name%&c already exists."
+prefix-name-too-long: "%plugin-prefix% &cThe name cannot exceed &e%max% &ccharacters."
+prefix-format-too-long: "%plugin-prefix% &cThe format cannot exceed &e%max% &ccharacters."
+prefix-name-no-spaces: "%plugin-prefix% &cThe prefix name cannot contain spaces."
+prefix-format-no-spaces: "%plugin-prefix% &cThe prefix format cannot contain spaces."
+prefix-created: "%plugin-prefix% &aPrefix &e%name% &acreated successfully."
+
+# -------- Delete prefix --------
+prefix-not-found: "%plugin-prefix% &cNo prefix with the name &e%name%&c exists."
+prefix-deleted: "%plugin-prefix% &aPrefix &e%name% &adeleted successfully."
+
+# -------- Add / Remove prefix from player --------
+player-not-found: "%plugin-prefix% &cPlayer &e%player%&c was not found."
+prefix-added: "%plugin-prefix% &aYou assigned the prefix &e%prefix% &ato &e%player% &a(&7%duration%&a)."
+prefix-removed: "%plugin-prefix% &aYou removed the prefix &e%prefix% &afrom &e%player%&a."
+player-has-no-prefix: "%plugin-prefix% &cPlayer &e%player% &cdoes not have that prefix."
+
+# -------- Notification to the player who receives a prefix --------
+prefix-received: "%plugin-prefix% &aYou received the prefix &e%prefix% &afor &7%duration%&a. Activate it in &e/prefixes&a."
+
+# -------- GUI / Self-selection --------
+prefix-selected: "%plugin-prefix% &aYou are now using the prefix &e%prefix%&a."
+prefix-no-permission-use: "%plugin-prefix% &cYou do not have the prefix &e%prefix%&c. Ask an admin for it."
+
+# -------- Reload --------
+reloaded: "%plugin-prefix% &aConfiguration reloaded successfully."
+
+# -------- List --------
+list-header: "%plugin-prefix% &aAvailable prefixes &7(%count%)&a:"
+list-empty: "%plugin-prefix% &cNo prefixes are registered."

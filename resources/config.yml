@@ -1,0 +1,20 @@
+# ==========================================
+#   PrefixesPro v1 - Main Configuration
+# ==========================================
+config-version: 1
+
+# Maximum length of the prefix name (without colors)
+prefix-max-name-length: 10
+
+# Maximum length of the prefix format (with color codes)
+prefix-max-format-length: 30
+
+# Time (in seconds) between each auto-save
+autosave-interval: 300
+
+# Chat format when the player has an active prefix
+# Placeholders: {prefix} {name} {message}
+chat-format: "{prefix} §7{name}§r: {message}"
+
+# If true, the prefix is also applied to the player's nametag
+update-nametag: false
