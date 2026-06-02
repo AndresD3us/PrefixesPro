@@ -43,11 +43,11 @@
 | `/prefix create` | Opens a form to create a new prefix | `prefixespro.command.create` |
 | `/prefix delete <name>` | Deletes a prefix from the server | `prefixespro.command.delete` |
 | `/prefix add <player> <prefix> [time]` | Assigns a prefix to a player (with optional duration) | `prefixespro.command.add` |
-| `/prefix revoke <player> <prefix>` | Removes a prefix from a player | `prefixespro.command.remove` |
+| `/prefix remove <player> <prefix>` | Removes a prefix from a player | `prefixespro.command.remove` |
 | `/prefix list` | Lists all registered prefixes | `prefixespro.command.list` |
 | `/prefix reload` | Reloads config, prefixes, sessions, and messages | `prefixespro.command.reload` |
 
-> 💡 Most subcommands have aliases: `add` → `give`, `assign` | `revoke` → `take` | `create` → `new` | `list` → `all`
+> 💡 Most subcommands have aliases: `add` → `give`, `assign` | `remove` → `take` | `create` → `new` | `list` → `all`
 
 ---
 
@@ -90,7 +90,7 @@ You can set the category when creating a prefix via the in-game form (`/prefix c
 | `prefixespro.command.create` | `op` | Create a new prefix |
 | `prefixespro.command.delete` | `op` | Delete a prefix |
 | `prefixespro.command.add` | `op` | Assign a prefix to a player |
-| `prefixespro.command.remove` | `op` | Revoke a prefix from a player |
+| `prefixespro.command.remove` | `op` | Remove a prefix from a player |
 | `prefixespro.command.list` | `op` | View all registered prefixes |
 | `prefixespro.command.reload` | `op` | Reload the plugin |
 

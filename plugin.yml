@@ -32,7 +32,7 @@ permissions:
 
   prefixespro.command.remove:
     default: op
-    description: "Remove a prefix from a player (/prefix revoke)"
+    description: "Remove a prefix from a player (/prefix remove)"
 
   prefixespro.command.reload:
     default: op

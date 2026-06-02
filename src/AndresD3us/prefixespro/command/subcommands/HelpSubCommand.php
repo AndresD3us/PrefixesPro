@@ -24,7 +24,7 @@ class HelpSubCommand implements SubCommandInterface
             "§e/prefix create §7- Create prefix (FormAPI)",
             "§e/prefix add §7<player> <prefix> §8[§7time§8] §7- Give prefix",
             "  §8» §7No time = permanent | e.g.: §e30d§7, §e1h§7, §e30m",
-            "§e/prefix revoke §7<player> <prefix> §7- Remove a prefix from a player",
+            "§e/prefix remove §7<player> <prefix> §7- Remove a prefix from a player",
             "§e/prefix delete §7<name> §7- Delete prefix from the server",
             "§e/prefix list §7- View all prefixes",
             "§e/prefix reload §7- Reload configuration",
